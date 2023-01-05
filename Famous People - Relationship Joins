@@ -1,0 +1,33 @@
+***Table showing date about Famous People.
+CREATE table famous_people(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    full_name TEXT, 
+    age INTEGER,
+    profression TEXT);
+
+INSERT INTO famous_people (full_name, age, profression) VALUES ("Goldie Hawn", 77, "actress");
+INSERT INTO famous_people (full_name, age, profression) VALUES ("Kurt Russell", 71, "actor");
+INSERT INTO famous_people (full_name, age, profression) VALUES ("Jessica Beil", 40, "actress");
+INSERT INTO famous_people (full_name, age, profression) VALUES ("Justin Timberlake", 41, "singer");
+INSERT INTO famous_people (full_name, age, profression) VALUES ("Ellen De Generes", 64, "actress");
+INSERT INTO famous_people (full_name, age, profression) VALUES ("Portia De Rossi", 49, "model");
+
+
+***Table showing the relationships of listed Famous People.
+CREATE table relationships(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    person1_id INTEGER,
+    person2_id INTEGER,
+    year INTEGER);
+    
+INSERT INTO relationships (person1_id, person2_id, year) VALUES (1, 2, 1983);
+INSERT INTO relationships (person1_id, person2_id, year) VALUES (3, 4, 2011);
+INSERT INTO relationships (person1_id, person2_id, year) VALUES (5, 6, 2008);
+
+
+*** Joins 2 tables to show whom is married to whom and what year.
+SELECT a.full_name, b.full_name, year FROM relationships
+    JOIN famous_people a
+    ON a.id=relationships.person1_id
+    JOIN famous_people b
+    ON b.id=relationships.person2_id
