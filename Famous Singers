@@ -1,0 +1,45 @@
+--table of famous singer
+CREATE table famous_people(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    full_name TEXT, 
+    profression TEXT);
+
+INSERT INTO famous_people (full_name, profression) VALUES ("Taylor Swift", "Singer");
+INSERT INTO famous_people (full_name, profression) VALUES ("Morgan Wallen", "Singer");
+INSERT INTO famous_people (full_name, profression) VALUES ("Post Melone", "Singer");
+INSERT INTO famous_people (full_name, profression) VALUES ("Selena Gomez", "Singer");
+INSERT INTO famous_people (full_name, profression) VALUES ("SZA", "Singer");
+INSERT INTO famous_people (full_name, profression) VALUES ("Ed Sheeran", "Singer");
+
+--table of famous singers top songs
+CREATE table top_charted_songs(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    song_name TEXT,
+    singer_id TEXT,
+    top_chart TEXT);
+
+INSERT INTO top_charted_songs (song_name, singer_id, top_chart) VALUES ("we are never ever getting back together", "1", "NO 1");
+INSERT INTO top_charted_songs (song_name, singer_id, top_chart) VALUES ("all too well (10min version)", "1", "NO 1");
+INSERT INTO top_charted_songs (song_name, singer_id, top_chart) VALUES ("cardigan", "1", "NO 1");
+INSERT INTO top_charted_songs (song_name, singer_id, top_chart) VALUES ("last night", "2", "NO 1");
+INSERT INTO top_charted_songs (song_name, singer_id, top_chart) VALUES ("you proof", "2", "NO 5");
+INSERT INTO top_charted_songs (song_name, singer_id, top_chart) VALUES ("thought you should know", "2", "NO 7");
+INSERT INTO top_charted_songs (song_name, singer_id, top_chart) VALUES ("circles", "3", "NO 1");
+INSERT INTO top_charted_songs (song_name, singer_id, top_chart) VALUES ("sunflower", "3", "NO 1");
+INSERT INTO top_charted_songs (song_name, singer_id, top_chart) VALUES ("better now", "3", "NO 3");
+INSERT INTO top_charted_songs (song_name, singer_id, top_chart) VALUES ("lose you to love me", "4", "NO 1");
+INSERT INTO top_charted_songs (song_name, singer_id, top_chart) VALUES ("calm down", "4", "NO 3");
+INSERT INTO top_charted_songs (song_name, singer_id, top_chart) VALUES ("we don't talk anymore", "4", "NO 9");
+INSERT INTO top_charted_songs (song_name, singer_id, top_chart) VALUES ("kill bill", "5", "NO 1");
+INSERT INTO top_charted_songs (song_name, singer_id, top_chart) VALUES ("slime you out", "5"," NO 1");
+INSERT INTO top_charted_songs (song_name, singer_id, top_chart) VALUES ("snooze", "5", "NO 2");
+INSERT INTO top_charted_songs (song_name, singer_id, top_chart) VALUES ("shape of you", "6", "NO 1");
+INSERT INTO top_charted_songs (song_name, singer_id, top_chart) VALUES ("perfect", "6", "NO 1");
+INSERT INTO top_charted_songs (song_name, singer_id, top_chart) VALUES ("bad habbits", "6", "NO 2");
+
+--table joining 2 tables together 
+SELECT b.full_name, a.song_name, a.top_chart
+FROM top_charted_songs a
+JOIN famous_people b
+ON a.singer_id=b.id
+ORDER BY top_chart
