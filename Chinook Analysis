@@ -1,0 +1,30 @@
+--Show the Employees who are Sales Agents
+SELECT 
+    firstname,
+    lastname,
+    title
+FROM chinook.employees
+WHERE title = 'Sales Support Agent';
+
+
+--Which sales agent made the most dollars in sales in 2009?
+WITH Total_sales_CTE AS (
+    SELECT
+        c.supportrepid,
+        SUM(i.total) AS total_sales
+FROM customers c
+JOIN invoices i
+    ON c.customerid = i.customerid
+WHERE i.invoicedate LIKE '%2009%' 
+GROUP BY c.supportrepid
+)
+
+SELECT 
+    e.firstname,
+    e.lastname,
+    t.total_sales
+FROM total_sales_cte t
+JOIN employees e
+ON t.supportrepid = e.employeeid
+ORDER BY t.total_sales DESC
+LIMIT 1;
